@@ -1,0 +1,6 @@
+name: Crashed
+version: '${project.version}'
+main: de.tobi1craft.crashed.CrashedWaterfall
+
+depend: [LuckPerms]
+softdepend: [Luckperms]

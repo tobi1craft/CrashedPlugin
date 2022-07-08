@@ -1,0 +1,9 @@
+#Crashed Plugin by tobi1craft
+
+function:
+  highest: true
+  newVoidWorld: true
+  cpGameOnStart: true
+  spawnCommand: true
+  worldCommand: true
+

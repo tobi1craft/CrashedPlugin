@@ -1,0 +1,28 @@
+name: Crashed
+version: '${project.version}'
+main: de.tobi1craft.crashed.CrashedPaper
+api-version: 1.16
+authors: [ tobi1craft ]
+depend: [ PlaceholderAPI, Multiverse-Core, LuckPerms ]
+
+commands:
+  highest:
+    permission: crashed.highest
+    description: Der Command für Spielauswahl und Auswertung
+    aliases: [ ]
+  newvoidworld:
+    permission: crashed.newvoidworld
+    description: Neu Welt mit Void
+    aliases: [ nvw, newworld, nw ]
+  settings:
+    permission: crashed.game.admin
+    description: Einstellungen für die Games
+    aliases: [ ]
+  bungeecute:
+    permission: crashed.bungeecute
+    description: Einen Befehl auf dem Bungeecrod ausführen
+    aliases: [ bcute ]
+  spawn:
+    description: Komme zum Spawn
+  world:
+    permission: multiverse.teleport.self.*

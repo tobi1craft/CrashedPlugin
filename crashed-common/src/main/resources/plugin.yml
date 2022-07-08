@@ -1,0 +1,25 @@
+name: CrashedCommon
+version: '${project.version}'
+main: de.tobi1craft.crashed.CrashedCommon
+api-version: 1.16
+authors: [ tobi1craft ]
+description: Das Standard Plugin des Crashed Networks
+depend: [ PlaceholderAPI ]
+
+commands:
+  bungeecute:
+    permission: crashed.bungeecute
+    description: Einen Befehl auf dem Bungeecrod ausführen
+    aliases: [ bcute ]
+
+  jumpandrun:
+    description: begib dich zum Jumap And Run
+    aliases: [ jnr, jar ]
+
+  nick:
+    permission: crashed.nick
+    description: Gebe dir einen Nicknamen
+
+  updates:
+    permission: crashed.updates
+    description: Zeige dir die verfügbaren Updates an

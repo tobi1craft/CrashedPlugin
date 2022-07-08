@@ -1,0 +1,41 @@
+#Crashed Plugin by tobi1craft
+
+name: lobby/rpg__/minis
+
+function:
+  customJoinMessage: true
+  noBlockFade: true
+  bungeecute: true
+  jumpAndRun: false
+  updateChecker: true
+  nick: true
+  returnVersion: true
+
+customJoinMessage:
+  text: Der Spieler %vault_prefix%%crashed_nick% &rist beigetreten
+
+MySQL:
+  host: ms2666.gamedata.io
+  port: 3306
+  database: ni5086434_1_DB
+  user: ni5086434_1_DB
+  password: SPx0uE70
+
+updater:
+  plugins:
+    - VentureChat:771
+    - AdvancedPortals:14356
+    - AntiCheatReloaded:23799
+    - CommandPanels:67788
+    - EazyNick:51398
+    - F3NPerm:46461
+    - LuckPerms:28140
+    - Multiverse-Core:390
+    - PlaceholderAPI:6245
+    - AdvancedReplay:52849
+    - ViaBackwards:27448
+    - ViaVersion:19254
+    - VoidGen:25391
+    - CommandNPC:40295
+    - FlyPerms:83432
+    - IPWhitelist:61
