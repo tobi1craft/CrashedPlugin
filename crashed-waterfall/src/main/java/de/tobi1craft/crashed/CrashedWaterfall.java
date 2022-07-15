@@ -114,7 +114,7 @@ public final class CrashedWaterfall extends Plugin {
                 getLogger().log(Level.WARNING, "--------------------------------");
             }
             UUID uuid = UUID.randomUUID();
-            ban.setNicked(uuid, ban.translateNowToDatetime("1Y"), "Baumkuchen Bug");
+            ban.ban(uuid, ban.translateNowToDatetime("60Y50M40D30h20m10s"), "test ban");
             getLogger().warning(ban.getEnd(uuid));
         }
 

@@ -17,62 +17,93 @@ public class BanMySQL {
     private final MySQL mySQL = plugin.getMySQL();
 
     public String translateNowToDatetime(String toFormat) {
-        int year = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.systemDefault())).get(Calendar.YEAR);
-        int month = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.systemDefault())).get(Calendar.MONTH) + 1;
-        int day = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.systemDefault())).get(Calendar.DAY_OF_MONTH);
-        int hour = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.systemDefault())).get(Calendar.HOUR_OF_DAY);
-        int minute = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.systemDefault())).get(Calendar.MINUTE);
-        int second = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.systemDefault())).get(Calendar.SECOND);
+        int year = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of("Europe/Berlin"))).get(Calendar.YEAR);
+        int month = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of("Europe/Berlin"))).get(Calendar.MONTH) + 1;
+        int day = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of("Europe/Berlin"))).get(Calendar.DAY_OF_MONTH);
+        int hour = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of("Europe/Berlin"))).get(Calendar.HOUR_OF_DAY);
+        int minute = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of("Europe/Berlin"))).get(Calendar.MINUTE);
+        int second = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of("Europe/Berlin"))).get(Calendar.SECOND);
         boolean isIn;
         boolean temp;
 
         isIn = toFormat.contains("Y");
         String[] a = toFormat.split("Y");
-        if (!(Objects.equals(a[0], ""))) year = year + Integer.parseInt(a[0]);
+        if (!(Objects.equals(a[0], "")) && isIn) year = year + Integer.parseInt(a[0]);
 
-        temp = a[0].contains("M"); //TODO: überall
+        temp = false;
+        for (String i : a) {
+            if (i.contains("M")) {
+                temp = true;
+                break;
+            }
+        }
         String[] b;
         if (a.length == 2) {
             b = a[1].split("M");
-            isIn = true; //TODO: überall
         } else {
             b = a[0].split("M");
         }
-        if (!(Objects.equals(b[0], "")) && !isIn) month = month + Integer.parseInt(b[0]);
-        //TODO: überall
-        isIn = temp; //TODO: überall
+        if (!(Objects.equals(b[0], "")) && temp) month = month + Integer.parseInt(b[0]);
 
+        temp = false;
+        for (String i : b) {
+            if (i.contains("D")) {
+                temp = true;
+                break;
+            }
+        }
         String[] c;
         if (b.length == 2) {
             c = b[1].split("D");
         } else {
             c = b[0].split("D");
         }
-        if (!(Objects.equals(c[0], ""))) day = day + Integer.parseInt(c[0]);
+        if (!(Objects.equals(c[0], "")) && temp) day = day + Integer.parseInt(c[0]);
 
+        temp = false;
+        for (String i : c) {
+            if (i.contains("h")) {
+                temp = true;
+                break;
+            }
+        }
         String[] d;
         if (c.length == 2) {
             d = c[1].split("h");
         } else {
             d = c[0].split("h");
         }
-        if (!(Objects.equals(d[0], ""))) hour = hour + Integer.parseInt(d[0]);
+        if (!(Objects.equals(d[0], "")) && temp) hour = hour + Integer.parseInt(d[0]);
 
+        temp = false;
+        for (String i : d) {
+            if (i.contains("m")) {
+                temp = true;
+                break;
+            }
+        }
         String[] e;
         if (d.length == 2) {
             e = d[1].split("m");
         } else {
             e = d[0].split("m");
         }
-        if (!(Objects.equals(e[0], ""))) minute = minute + Integer.parseInt(e[0]);
+        if (!(Objects.equals(e[0], "")) && temp) minute = minute + Integer.parseInt(e[0]);
 
+        temp = false;
+        for (String i : e) {
+            if (i.contains("s")) {
+                temp = true;
+                break;
+            }
+        }
         String[] f;
         if (e.length == 2) {
             f = e[1].split("s");
         } else {
             f = e[0].split("s");
         }
-        if (!(Objects.equals(f[0], ""))) second = second + Integer.parseInt(f[0]);
+        if (!(Objects.equals(f[0], "")) && temp) second = second + Integer.parseInt(f[0]);
 
         return translateDateToDatetime(year, month, day, hour, minute, second);
     }
@@ -84,6 +115,7 @@ public class BanMySQL {
         StringBuilder hour = new StringBuilder(String.valueOf(hourInt));
         StringBuilder minute = new StringBuilder(String.valueOf(minuteInt));
         StringBuilder second = new StringBuilder(String.valueOf(secondInt));
+        //TODO: umwandeln (also 13 Monate zu 1 Monat, 1 Jahr)
         while (month.length() < 2) {
             month.insert(0, "0");
         }
@@ -102,7 +134,7 @@ public class BanMySQL {
         return year + "-" + month + "-" + day + " " + hour + "-" + minute + "-" + second;
     }
 
-    public void setNicked(UUID uuid, String datetime, String reason) {
+    public void ban(UUID uuid, String datetime, String reason) {
         mySQL.connect();
         try {
             PreparedStatement st;

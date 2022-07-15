@@ -11,19 +11,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.plugin.messaging.PluginMessageListener;
-import org.jetbrains.annotations.NotNull;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-public final class CrashedPaper extends JavaPlugin implements PluginMessageListener {
+public final class CrashedPaper extends JavaPlugin {
 
     private static CrashedPaper plugin;
     private static FileConfiguration config;
@@ -32,6 +27,10 @@ public final class CrashedPaper extends JavaPlugin implements PluginMessageListe
     private static GameManager gameManager;
     private static Location spawnLocation;
 
+    public static CrashedPaper getPlugin() {
+        return plugin;
+    }
+
     @Override
     public void onEnable() {
         plugin = this;
@@ -39,8 +38,6 @@ public final class CrashedPaper extends JavaPlugin implements PluginMessageListe
         spawnLocation = new Location(Bukkit.getWorld("world"), 0, 4, 0, -180, 0);
         plugin.saveDefaultConfig();
         initFiles();
-        Bukkit.getMessenger().registerIncomingPluginChannel(this, "BungeeCord", this);
-        Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         PluginManager pluginManager = Bukkit.getPluginManager();
 
         if (config.getBoolean("function.highest"))
@@ -65,8 +62,6 @@ public final class CrashedPaper extends JavaPlugin implements PluginMessageListe
 
     @Override
     public void onDisable() {
-        Bukkit.getMessenger().unregisterIncomingPluginChannel(this, "BungeeCord", this);
-        Bukkit.getMessenger().unregisterOutgoingPluginChannel(this, "BungeeCord");
     }
 
     private void initFiles() {
@@ -90,10 +85,6 @@ public final class CrashedPaper extends JavaPlugin implements PluginMessageListe
         return settings;
     }
 
-    public static CrashedPaper getPlugin() {
-        return plugin;
-    }
-
     public GameManager getGameManager() {
         return gameManager;
     }
@@ -108,18 +99,5 @@ public final class CrashedPaper extends JavaPlugin implements PluginMessageListe
 
     public Location getSpawnLocation() {
         return spawnLocation;
-    }
-
-    @Override
-    public void onPluginMessageReceived(@NotNull String channel, @NotNull Player player, byte[] message) {
-        try {
-            DataInputStream stream = new DataInputStream(new ByteArrayInputStream(message));
-            String subChannel = stream.readUTF();
-            if (subChannel.equals("restart")) {
-
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

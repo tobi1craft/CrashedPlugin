@@ -7,7 +7,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -54,9 +53,8 @@ public class UpdateChecker implements Listener {
                     for (String id : ids.keySet()) {
                         if (checkUpdate(id, ids.get(id))) {
                             TextComponent text = new TextComponent(ChatColor.GOLD + "Update available for " + ChatColor.YELLOW + ids.get(id));
-                            if (Bukkit.getPluginManager().getPlugin(ids.get(id)).getDescription().getWebsite() != null) {
+                            if (Bukkit.getPluginManager().getPlugin(ids.get(id)).getDescription().getWebsite() != null)
                                 text.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Objects.requireNonNull(Bukkit.getPluginManager().getPlugin(ids.get(id))).getDescription().getWebsite()));
-                            }
                             p.sendMessage(text);
                         }
                     }
