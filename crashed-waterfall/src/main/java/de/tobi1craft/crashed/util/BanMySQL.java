@@ -115,7 +115,7 @@ public class BanMySQL {
         StringBuilder hour = new StringBuilder(String.valueOf(hourInt));
         StringBuilder minute = new StringBuilder(String.valueOf(minuteInt));
         StringBuilder second = new StringBuilder(String.valueOf(secondInt));
-        //TODO: umwandeln (also 13 Monate zu 1 Monat, 1 Jahr) -> wichtig
+        //TODO: umwandeln (also 13 Monate zu 1 Monat, 1 Jahr)!!!!!!!!!
         while (month.length() < 2) {
             month.insert(0, "0");
         }
