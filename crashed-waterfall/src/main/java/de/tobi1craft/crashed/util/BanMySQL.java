@@ -2,6 +2,7 @@ package de.tobi1craft.crashed.util;
 
 import de.tobi1craft.crashed.CrashedWaterfall;
 import de.tobi1craft.crashed.mysql.MySQL;
+import net.md_5.bungee.api.ProxyServer;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,6 +16,8 @@ import java.util.UUID;
 public class BanMySQL {
     private final CrashedWaterfall plugin = CrashedWaterfall.getPlugin();
     private final MySQL mySQL = plugin.getMySQL();
+    int daysInMonth;
+    int month;
 
     public String translateNowToDatetime(String toFormat) {
         int year = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of("Europe/Berlin"))).get(Calendar.YEAR);
@@ -109,13 +112,44 @@ public class BanMySQL {
     }
 
     public String translateDateToDatetime(int yearInt, int monthInt, int dayInt, int hourInt, int minuteInt, int secondInt) {
+        month = monthInt;
+
+        while (secondInt >= 60) {
+            secondInt = secondInt - 60;
+            minuteInt++;
+        }
+        while (minuteInt >= 60) {
+            minuteInt = minuteInt - 60;
+            hourInt++;
+        }
+        while (hourInt >= 24) {
+            hourInt = hourInt - 24;
+            dayInt++;
+        }
+        while (month >= 13) {
+            month = month - 13;
+            yearInt++;
+        }
+
+        setDaysInMonth();
+        while (dayInt >= daysInMonth) {
+            dayInt = dayInt - daysInMonth;
+            month++;
+            setDaysInMonth();
+        }
+        while (month >= 12) {
+            month = month - 12;
+            yearInt++;
+        }
+
+
         String year = String.valueOf(yearInt);
         StringBuilder month = new StringBuilder(String.valueOf(monthInt));
         StringBuilder day = new StringBuilder(String.valueOf(dayInt));
         StringBuilder hour = new StringBuilder(String.valueOf(hourInt));
         StringBuilder minute = new StringBuilder(String.valueOf(minuteInt));
         StringBuilder second = new StringBuilder(String.valueOf(secondInt));
-        //TODO: umwandeln (also 13 Monate zu 1 Monat, 1 Jahr)!!!!!!!!!
+
         while (month.length() < 2) {
             month.insert(0, "0");
         }
@@ -132,6 +166,27 @@ public class BanMySQL {
             second.insert(0, "0");
         }
         return year + "-" + month + "-" + day + " " + hour + "-" + minute + "-" + second;
+    }
+
+    private void setDaysInMonth() {
+        daysInMonth = 30;
+        switch (month) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                daysInMonth = 31;
+                break;
+            case 2:
+                //TODO: Februar 28 / 29 Tage
+                break;
+            default:
+                ProxyServer.getInstance().getLogger().warning("Error in Ban System (daysInMonth)");
+
+        }
     }
 
     public void ban(UUID uuid, String datetime, String reason) {
