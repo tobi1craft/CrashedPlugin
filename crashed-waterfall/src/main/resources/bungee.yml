@@ -1,6 +1,7 @@
 name: Crashed
 version: '${project.version}'
 main: de.tobi1craft.crashed.CrashedWaterfall
+author: tobi1craft
 
 depend: [LuckPerms]
 softdepend: [Luckperms]

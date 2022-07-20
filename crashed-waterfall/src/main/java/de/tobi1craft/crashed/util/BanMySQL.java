@@ -3,7 +3,12 @@ package de.tobi1craft.crashed.util;
 import de.tobi1craft.crashed.CrashedWaterfall;
 import de.tobi1craft.crashed.mysql.MySQL;
 import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.config.Configuration;
+import net.md_5.bungee.config.ConfigurationProvider;
+import net.md_5.bungee.config.YamlConfiguration;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,14 +23,28 @@ public class BanMySQL {
     private final MySQL mySQL = plugin.getMySQL();
     int daysInMonth;
     int month;
+    Configuration config;
+    String timeZone;
+
+
+    public BanMySQL() {
+        File file = new File(plugin.getDataFolder().getPath(), "config.yml");
+        try {
+            config = ConfigurationProvider.getProvider(YamlConfiguration.class).load(file);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public String translateNowToDatetime(String toFormat) {
-        int year = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of("Europe/Berlin"))).get(Calendar.YEAR);
-        int month = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of("Europe/Berlin"))).get(Calendar.MONTH) + 1;
-        int day = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of("Europe/Berlin"))).get(Calendar.DAY_OF_MONTH);
-        int hour = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of("Europe/Berlin"))).get(Calendar.HOUR_OF_DAY);
-        int minute = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of("Europe/Berlin"))).get(Calendar.MINUTE);
-        int second = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of("Europe/Berlin"))).get(Calendar.SECOND);
+        assert false;
+        timeZone = config.getString("date.timeZoneId");
+        int year = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of(timeZone))).get(Calendar.YEAR);
+        int month = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of(timeZone))).get(Calendar.MONTH) + 1;
+        int day = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of(timeZone))).get(Calendar.DAY_OF_MONTH);
+        int hour = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of(timeZone))).get(Calendar.HOUR_OF_DAY);
+        int minute = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of(timeZone))).get(Calendar.MINUTE);
+        int second = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of(timeZone))).get(Calendar.SECOND);
         boolean isIn;
         boolean temp;
 
@@ -112,6 +131,8 @@ public class BanMySQL {
     }
 
     public String translateDateToDatetime(int yearInt, int monthInt, int dayInt, int hourInt, int minuteInt, int secondInt) {
+        assert false;
+        timeZone = config.getString("date.timeZoneId");
         month = monthInt;
 
         while (secondInt >= 60) {
@@ -132,13 +153,20 @@ public class BanMySQL {
         }
 
         setDaysInMonth();
+        System.out.println("uno");
         while (dayInt >= daysInMonth) {
+            System.out.println("zwei");
             dayInt = dayInt - daysInMonth;
             month++;
+            while (month >= 13) {
+                month = month - 12;
+                yearInt++;
+            }
+            System.out.println(month);
             setDaysInMonth();
         }
-        while (month >= 12) {
-            month = month - 12;
+        while (month >= 13) {
+            month = month - 13;
             yearInt++;
         }
 
@@ -169,23 +197,18 @@ public class BanMySQL {
     }
 
     private void setDaysInMonth() {
-        daysInMonth = 30;
         switch (month) {
-            case 1:
-            case 3:
-            case 5:
-            case 7:
-            case 8:
-            case 10:
-            case 12:
-                daysInMonth = 31;
-                break;
-            case 2:
+            case 1, 3, 5, 7, 8, 10, 12 -> daysInMonth = 31;
+            case 4, 6, 9, 11 -> daysInMonth = 30;
+            case 2 -> {
                 //TODO: Februar 28 / 29 Tage!!!
-                break;
-            default:
-                ProxyServer.getInstance().getLogger().warning("Error in Ban System (daysInMonth)");
-
+                int integer = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of(timeZone))).get(Calendar.YEAR) / 4;
+                float floateger = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of(timeZone))).get(Calendar.YEAR) / 4f;
+                daysInMonth = floateger == integer ? 29 : 28;
+                ProxyServer.getInstance().getLogger().warning(floateger + " ---- " + integer);
+                ProxyServer.getInstance().getLogger().warning(String.valueOf(daysInMonth));
+            }
+            default -> ProxyServer.getInstance().getLogger().warning("Error in Ban System (daysInMonth)");
         }
     }
 

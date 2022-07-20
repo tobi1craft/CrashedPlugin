@@ -69,6 +69,7 @@ public final class CrashedWaterfall extends Plugin {
         }
         if (!config.contains("function.versions")) config.set("function.versions", true);
         if (!config.contains("function.bansystem")) config.set("function.bansystem", true);
+        if (!config.contains("date.timeZoneId")) config.set("date.timeZoneId", "Europe/Berlin");
 
         saveConfig();
 
@@ -114,7 +115,7 @@ public final class CrashedWaterfall extends Plugin {
                 getLogger().log(Level.WARNING, "--------------------------------");
             }
             UUID uuid = UUID.randomUUID();
-            ban.ban(uuid, ban.translateNowToDatetime("60Y50M40D30h20m10s"), "test ban");
+            ban.ban(uuid, ban.translateNowToDatetime("62Y7M420D30h20m10s"), "test ban");
             getLogger().warning(ban.getEnd(uuid));
         }
 
