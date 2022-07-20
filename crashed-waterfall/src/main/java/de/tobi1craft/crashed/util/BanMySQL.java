@@ -22,7 +22,7 @@ public class BanMySQL {
     private final CrashedWaterfall plugin = CrashedWaterfall.getPlugin();
     private final MySQL mySQL = plugin.getMySQL();
     int daysInMonth;
-    int month;
+    int monthh;
     Configuration config;
     String timeZone;
 
@@ -133,7 +133,7 @@ public class BanMySQL {
     public String translateDateToDatetime(int yearInt, int monthInt, int dayInt, int hourInt, int minuteInt, int secondInt) {
         assert false;
         timeZone = config.getString("date.timeZoneId");
-        month = monthInt;
+        monthh = monthInt;
 
         while (secondInt >= 60) {
             secondInt = secondInt - 60;
@@ -147,32 +147,29 @@ public class BanMySQL {
             hourInt = hourInt - 24;
             dayInt++;
         }
-        while (month >= 13) {
-            month = month - 13;
+        while (monthh >= 13) {
+            monthh = monthh - 12;
             yearInt++;
         }
 
-        setDaysInMonth();
-        System.out.println("uno");
+        setDaysInMonth(yearInt);
         while (dayInt >= daysInMonth) {
-            System.out.println("zwei");
             dayInt = dayInt - daysInMonth;
-            month++;
-            while (month >= 13) {
-                month = month - 12;
+            monthh++;
+            while (monthh >= 13) {
+                monthh = monthh - 12;
                 yearInt++;
             }
-            System.out.println(month);
-            setDaysInMonth();
+            setDaysInMonth(yearInt);
         }
-        while (month >= 13) {
-            month = month - 13;
+        while (monthh >= 13) {
+            monthh = monthh - 12;
             yearInt++;
         }
 
 
         String year = String.valueOf(yearInt);
-        StringBuilder month = new StringBuilder(String.valueOf(monthInt));
+        StringBuilder month = new StringBuilder(String.valueOf(monthh));
         StringBuilder day = new StringBuilder(String.valueOf(dayInt));
         StringBuilder hour = new StringBuilder(String.valueOf(hourInt));
         StringBuilder minute = new StringBuilder(String.valueOf(minuteInt));
@@ -196,14 +193,14 @@ public class BanMySQL {
         return year + "-" + month + "-" + day + " " + hour + "-" + minute + "-" + second;
     }
 
-    private void setDaysInMonth() {
-        switch (month) {
+    private void setDaysInMonth(int year) {
+        switch (monthh) {
             case 1, 3, 5, 7, 8, 10, 12 -> daysInMonth = 31;
             case 4, 6, 9, 11 -> daysInMonth = 30;
             case 2 -> {
                 //TODO: Februar 28 / 29 Tage!!!
-                int integer = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of(timeZone))).get(Calendar.YEAR) / 4;
-                float floateger = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of(timeZone))).get(Calendar.YEAR) / 4f;
+                int integer = year / 4;
+                float floateger = year / 4f;
                 daysInMonth = floateger == integer ? 29 : 28;
                 ProxyServer.getInstance().getLogger().warning(floateger + " ---- " + integer);
                 ProxyServer.getInstance().getLogger().warning(String.valueOf(daysInMonth));
