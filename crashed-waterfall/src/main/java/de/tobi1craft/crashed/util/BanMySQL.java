@@ -13,10 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.ZoneId;
-import java.util.Calendar;
-import java.util.Objects;
-import java.util.TimeZone;
-import java.util.UUID;
+import java.util.*;
 
 public class BanMySQL {
     private final CrashedWaterfall plugin = CrashedWaterfall.getPlugin();
@@ -228,7 +225,7 @@ public class BanMySQL {
         }
     }
 
-    public void ban(UUID uuid, String datetime, String reason, String now) {
+    public void ban(UUID uuid, String reason, String datetime, String now) {
         mySQL.connect();
         try {
             PreparedStatement st;

@@ -37,7 +37,7 @@ public class ban extends Command implements TabExecutor {
         }
         UUID toBanUUID = toBan.getUniqueId();
 
-        ban.ban(toBanUUID, ban.translateNowToDatetime(args[1]), args[2], ban.translateNowToDatetime(""));
+        ban.ban(toBanUUID, args[1], ban.translateNowToDatetime(args[2]), ban.translateNowToDatetime(""));
     }
 
     @Override
@@ -56,7 +56,7 @@ public class ban extends Command implements TabExecutor {
             if (args.length == 2) {
                 List<String> list = new ArrayList<>();
                 list.add("example");
-                list.add("other example");
+                list.add("otherExample");
                 /*
                 TODO: presets in und aus config
                 for (ProxiedPlayer players : ProxyServer.getInstance().getPlayers()) {
@@ -67,7 +67,7 @@ public class ban extends Command implements TabExecutor {
             }
             if (args.length == 3) {
                 List<String> list = new ArrayList<>();
-                list.add("YDMhms");
+                list.add("YMDhms");
                 return list.stream().filter(c -> c.startsWith(args[2])).collect(Collectors.toList());
             }
         }

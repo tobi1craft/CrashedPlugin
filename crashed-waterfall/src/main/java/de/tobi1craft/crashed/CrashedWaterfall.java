@@ -116,7 +116,7 @@ public final class CrashedWaterfall extends Plugin {
             }
             //TODO: Ban Command und dann das hier löschen
             UUID uuid = UUID.randomUUID();
-            ban.ban(uuid, ban.translateNowToDatetime("YDMhms"), "test ban", ban.translateNowToDatetime(""));
+            ban.ban(uuid, "test ban", ban.translateNowToDatetime("YDMhms"), ban.translateNowToDatetime(""));
             getLogger().warning(ban.getEnd(uuid));
         }
 
