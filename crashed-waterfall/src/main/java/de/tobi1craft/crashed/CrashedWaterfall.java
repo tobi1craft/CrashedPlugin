@@ -106,7 +106,7 @@ public final class CrashedWaterfall extends Plugin {
         if (config.getBoolean("function.bansystem")) {
             PM.registerCommand(this, new ban());
             try {
-                PreparedStatement ps = mySQL.getCon().prepareStatement("CREATE TABLE IF NOT EXISTS `crashed_ban` (player VARCHAR(36),end VARCHAR(19),reason TEXT,PRIMARY KEY (player),UNIQUE (player))");
+                PreparedStatement ps = mySQL.getCon().prepareStatement("CREATE TABLE IF NOT EXISTS `crashed_ban` (player VARCHAR(36),end VARCHAR(19),reason TEXT,whenbanned VARCHAR(19),PRIMARY KEY (player),UNIQUE (player))");
                 ps.execute();
             } catch (SQLException e) {
                 getLogger().log(Level.WARNING, "Fehler beim Verbinden mit MySQL!");
@@ -116,7 +116,7 @@ public final class CrashedWaterfall extends Plugin {
             }
             //TODO: Ban Command und dann das hier löschen
             UUID uuid = UUID.randomUUID();
-            ban.ban(uuid, ban.translateNowToDatetime("YDMhms"), "test ban");
+            ban.ban(uuid, ban.translateNowToDatetime("YDMhms"), "test ban", ban.translateNowToDatetime(""));
             getLogger().warning(ban.getEnd(uuid));
         }
 
@@ -189,7 +189,7 @@ public final class CrashedWaterfall extends Plugin {
         return mySQL;
     }
 
-    public static BanMySQL getBan() {
+    public BanMySQL getBan() {
         return ban;
     }
 

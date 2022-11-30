@@ -228,20 +228,22 @@ public class BanMySQL {
         }
     }
 
-    public void ban(UUID uuid, String datetime, String reason) {
+    public void ban(UUID uuid, String datetime, String reason, String now) {
         mySQL.connect();
         try {
             PreparedStatement st;
             if (isBanned(uuid)) {
-                st = mySQL.getCon().prepareStatement("UPDATE `crashed_ban` SET `end` = ?,`reason` = ? WHERE `player` = ?");
+                st = mySQL.getCon().prepareStatement("UPDATE `crashed_ban` SET `end` = ?,`reason` = ?,`whenbanned` = ? WHERE `player` = ?");
                 st.setString(1, datetime);
                 st.setString(2, reason);
-                st.setString(3, String.valueOf(uuid));
+                st.setString(3, now);
+                st.setString(4, String.valueOf(uuid));
             } else {
-                st = mySQL.getCon().prepareStatement("INSERT INTO `crashed_ban`(`player`,`end`,`reason`) VALUES (?,?,?)");
+                st = mySQL.getCon().prepareStatement("INSERT INTO `crashed_ban`(`player`,`end`,`reason`,`whenbanned`) VALUES (?,?,?,?)");
                 st.setString(1, String.valueOf(uuid));
                 st.setString(2, datetime);
                 st.setString(3, reason);
+                st.setString(4, now);
             }
             st.execute();
         } catch (SQLException e) {
@@ -279,6 +281,7 @@ public class BanMySQL {
     }
 
     public String getReason(UUID uuid) {
+        if (!isBanned(uuid)) return "&cDieser Spieler ist nicht gebannt";
         mySQL.connect();
         PreparedStatement st;
         String result = "";
@@ -298,6 +301,7 @@ public class BanMySQL {
     }
 
     public String getEnd(UUID uuid) {
+        if (!isBanned(uuid)) return "&cDieser Spieler ist nicht gebannt";
         mySQL.connect();
         PreparedStatement st;
         String result = "";
