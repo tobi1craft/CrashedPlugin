@@ -316,4 +316,24 @@ public class BanMySQL {
         return result.isEmpty() ? "forever" : result;
 
     }
+
+    public String whenBanned(UUID uuid) {
+        if (!isBanned(uuid)) return "&cDieser Spieler ist nicht gebannt";
+        mySQL.connect();
+        PreparedStatement st;
+        String result = "";
+        try {
+            st = mySQL.getCon().prepareStatement("SELECT `whenbanned` FROM `crashed_ban` WHERE `player` = ?");
+            st.setString(1, String.valueOf(uuid));
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                result = rs.getString("whenbanned");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        mySQL.disconnect();
+        return result.isEmpty() ? "unknown or error" : result;
+
+    }
 }
