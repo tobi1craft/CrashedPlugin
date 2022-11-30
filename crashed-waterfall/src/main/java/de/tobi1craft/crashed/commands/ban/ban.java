@@ -37,7 +37,7 @@ public class ban extends Command implements TabExecutor {
         }
         UUID toBanUUID = toBan.getUniqueId();
 
-        ban.ban(toBanUUID, args[1], ban.translateNowToDatetime(args[2]), ban.translateNowToDatetime(""));
+        ban.ban(toBanUUID, args[1], ban.translateNowToDatetime(args[2]));
     }
 
     @Override

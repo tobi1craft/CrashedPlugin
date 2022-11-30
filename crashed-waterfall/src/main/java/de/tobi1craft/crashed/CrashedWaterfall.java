@@ -27,7 +27,6 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.UUID;
 import java.util.logging.Level;
 
 public final class CrashedWaterfall extends Plugin {
@@ -40,6 +39,10 @@ public final class CrashedWaterfall extends Plugin {
     private static versions versions;
     private static MySQL mySQL;
     private static BanMySQL ban;
+
+    public static CrashedWaterfall getPlugin() {
+        return plugin;
+    }
 
     @Override
     public void onEnable() {
@@ -114,10 +117,6 @@ public final class CrashedWaterfall extends Plugin {
                 e.printStackTrace();
                 getLogger().log(Level.WARNING, "--------------------------------");
             }
-            //TODO: Ban Command und dann das hier löschen
-            UUID uuid = UUID.randomUUID();
-            ban.ban(uuid, "test ban", ban.translateNowToDatetime("YDMhms"), ban.translateNowToDatetime(""));
-            getLogger().warning(ban.getEnd(uuid));
         }
 
         if (config.getBoolean("function.friday") || config.getBoolean("function.players")) new JoinListener(this);
@@ -134,10 +133,6 @@ public final class CrashedWaterfall extends Plugin {
     @Override
     public void onDisable() {
         mySQL.disconnect();
-    }
-
-    public static CrashedWaterfall getPlugin() {
-        return plugin;
     }
 
     public versions getVersions() {
