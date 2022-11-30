@@ -1,6 +1,7 @@
 package de.tobi1craft.crashed;
 
 import de.tobi1craft.crashed.commands.*;
+import de.tobi1craft.crashed.commands.ban.ban;
 import de.tobi1craft.crashed.commands.serverwechsel.lobby;
 import de.tobi1craft.crashed.commands.serverwechsel.minigames;
 import de.tobi1craft.crashed.commands.serverwechsel.rpg;
@@ -103,8 +104,7 @@ public final class CrashedWaterfall extends Plugin {
             }
         }
         if (config.getBoolean("function.bansystem")) {
-            versions = new versions();
-            PM.registerCommand(this, versions);
+            PM.registerCommand(this, new ban());
             try {
                 PreparedStatement ps = mySQL.getCon().prepareStatement("CREATE TABLE IF NOT EXISTS `crashed_ban` (player VARCHAR(36),end VARCHAR(19),reason TEXT,PRIMARY KEY (player),UNIQUE (player))");
                 ps.execute();
@@ -116,7 +116,7 @@ public final class CrashedWaterfall extends Plugin {
             }
             //TODO: Ban Command und dann das hier löschen
             UUID uuid = UUID.randomUUID();
-            ban.ban(uuid, ban.translateNowToDatetime("1Y"), "test ban");
+            ban.ban(uuid, ban.translateNowToDatetime("YDMhms"), "test ban");
             getLogger().warning(ban.getEnd(uuid));
         }
 

@@ -50,7 +50,11 @@ public class BanMySQL {
 
         isIn = toFormat.contains("Y");
         String[] a = toFormat.split("Y");
-        if (!(Objects.equals(a[0], "")) && isIn) year = year + Integer.parseInt(a[0]);
+        if (!(a.length == 0 || Objects.equals(a[0], "")) && isIn) year = year + Integer.parseInt(a[0]);
+        else {
+            a = new String[1];
+            a[0] = "";
+        }
 
         temp = false;
         for (String i : a) {
@@ -65,7 +69,11 @@ public class BanMySQL {
         } else {
             b = a[0].split("M");
         }
-        if (!(Objects.equals(b[0], "")) && temp) month = month + Integer.parseInt(b[0]);
+        if (!(b.length == 0 || Objects.equals(b[0], "")) && temp) month = month + Integer.parseInt(b[0]);
+        else {
+            b = new String[1];
+            b[0] = "";
+        }
 
         temp = false;
         for (String i : b) {
@@ -80,7 +88,11 @@ public class BanMySQL {
         } else {
             c = b[0].split("D");
         }
-        if (!(Objects.equals(c[0], "")) && temp) day = day + Integer.parseInt(c[0]);
+        if (!(c.length == 0 || Objects.equals(c[0], "")) && temp) day = day + Integer.parseInt(c[0]);
+        else {
+            c = new String[1];
+            c[0] = "";
+        }
 
         temp = false;
         for (String i : c) {
@@ -95,7 +107,11 @@ public class BanMySQL {
         } else {
             d = c[0].split("h");
         }
-        if (!(Objects.equals(d[0], "")) && temp) hour = hour + Integer.parseInt(d[0]);
+        if (!(d.length == 0 || Objects.equals(d[0], "")) && temp) hour = hour + Integer.parseInt(d[0]);
+        else {
+            d = new String[1];
+            d[0] = "";
+        }
 
         temp = false;
         for (String i : d) {
@@ -110,7 +126,11 @@ public class BanMySQL {
         } else {
             e = d[0].split("m");
         }
-        if (!(Objects.equals(e[0], "")) && temp) minute = minute + Integer.parseInt(e[0]);
+        if (!(e.length == 0 || Objects.equals(e[0], "")) && temp) minute = minute + Integer.parseInt(e[0]);
+        else {
+            e = new String[1];
+            e[0] = "";
+        }
 
         temp = false;
         for (String i : e) {
@@ -153,7 +173,7 @@ public class BanMySQL {
         }
 
         setDaysInMonth(yearInt);
-        while (dayInt >= daysInMonth) {
+        while (dayInt > daysInMonth) {
             dayInt = dayInt - daysInMonth;
             monthh++;
             while (monthh >= 13) {
@@ -198,7 +218,6 @@ public class BanMySQL {
             case 1, 3, 5, 7, 8, 10, 12 -> daysInMonth = 31;
             case 4, 6, 9, 11 -> daysInMonth = 30;
             case 2 -> {
-                //TODO: Februar 28 / 29 Tage!!!
                 int integer = year / 4;
                 float floateger = year / 4f;
                 daysInMonth = floateger == integer ? 29 : 28;

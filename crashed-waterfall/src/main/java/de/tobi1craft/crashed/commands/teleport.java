@@ -21,7 +21,7 @@ public class teleport extends Command implements TabExecutor {
     private final CrashedWaterfall plugin = CrashedWaterfall.getPlugin();
 
     public teleport() {
-        super("gtp", "crashed.teleport");
+        super("gtp", "crashed.teleport", "crashedtp", "ctp");
     }
 
     @Override
@@ -112,7 +112,7 @@ public class teleport extends Command implements TabExecutor {
             if (args.length == 5) {
                 server = ProxyServer.getInstance().getServerInfo(args[4]);
                 if (server == null) {
-                    //TODO Nachricht
+                    sender.sendMessage(new TextComponent(ChatColor.RED + "Dieser Server existiert nicht!"));
                     return;
                 }
                 x = args[1];
@@ -131,7 +131,7 @@ public class teleport extends Command implements TabExecutor {
             if (args.length == 7) {
                 server = ProxyServer.getInstance().getServerInfo(args[6]);
                 if (server == null) {
-                    //TODO Nachricht
+                    sender.sendMessage(new TextComponent(ChatColor.RED + "Dieser Server existiert nicht!"));
                     return;
                 }
                 x = args[1];
