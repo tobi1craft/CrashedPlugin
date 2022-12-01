@@ -249,6 +249,30 @@ public class BanMySQL {
         mySQL.disconnect();
     }
 
+    public void ban(UUID uuid, String reason) {
+        mySQL.connect();
+        try {
+            PreparedStatement st;
+            if (isBanned(uuid)) {
+                st = mySQL.getCon().prepareStatement("UPDATE `crashed_ban` SET `end` = ?,`reason` = ?,`whenbanned` = ? WHERE `player` = ?");
+                st.setString(1, "");
+                st.setString(2, reason);
+                st.setString(3, this.translateNowToDatetime(""));
+                st.setString(4, String.valueOf(uuid));
+            } else {
+                st = mySQL.getCon().prepareStatement("INSERT INTO `crashed_ban`(`player`,`reason`,`whenbanned`) VALUES (?,?,?)");
+                st.setString(1, String.valueOf(uuid));
+                //st.setString(2, datetime);
+                st.setString(2, reason);
+                st.setString(3, this.translateNowToDatetime(""));
+            }
+            st.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        mySQL.disconnect();
+    }
+
     public void removeBan(UUID uuid) {
         mySQL.connect();
         PreparedStatement ps;
@@ -293,7 +317,7 @@ public class BanMySQL {
             e.printStackTrace();
         }
         mySQL.disconnect();
-        return result.isEmpty() ? "&cEs wurde kein Grund angegeben" : result;
+        return result == null || result.isEmpty() ? "&cEs wurde kein Grund angegeben" : result;
 
     }
 
@@ -313,7 +337,7 @@ public class BanMySQL {
             e.printStackTrace();
         }
         mySQL.disconnect();
-        return result.isEmpty() ? "forever" : result;
+        return result == null || result.isEmpty() ? "forever" : result;
 
     }
 
@@ -333,7 +357,7 @@ public class BanMySQL {
             e.printStackTrace();
         }
         mySQL.disconnect();
-        return result.isEmpty() ? "unknown or error" : result;
+        return result == null || result.isEmpty() ? "unknown or error" : result;
 
     }
 }

@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.UUID;
 import java.util.logging.Level;
 
 public final class CrashedWaterfall extends Plugin {
