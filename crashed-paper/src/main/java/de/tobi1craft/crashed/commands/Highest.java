@@ -1,6 +1,6 @@
 package de.tobi1craft.crashed.commands;
 
-import de.tobi1craft.crashed.CrashedPaper;
+import de.tobi1craft.crashed.CrashedMinigames;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class Highest implements CommandExecutor {
 
-    CrashedPaper plugin = CrashedPaper.getPlugin();
+    CrashedMinigames plugin = CrashedMinigames.getPlugin();
     FileConfiguration config = plugin.getConfig();
 
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
@@ -61,11 +61,11 @@ public class Highest implements CommandExecutor {
                     if (!config.contains("highest.votemap" + arg)) {
                         config.set("highest.votemap" + arg, 0);
                     }
-                    CrashedPaper.getPlugin().saveConfig();
+                    CrashedMinigames.getPlugin().saveConfig();
                     int temp = config.getInt("highest.votemap" + arg);
                     temp++;
                     config.set("highest.votemap" + arg, temp);
-                    CrashedPaper.getPlugin().saveConfig();
+                    CrashedMinigames.getPlugin().saveConfig();
                     sender.sendMessage("Du hast für eine Map abgestimmt");
                 }
             } else {
@@ -74,7 +74,7 @@ public class Highest implements CommandExecutor {
                     if (args[0].equalsIgnoreCase("game")) {
                         String arg = args[1];
                         config.set("highest.game", arg);
-                        CrashedPaper.getPlugin().saveConfig();
+                        CrashedMinigames.getPlugin().saveConfig();
                         sender.sendMessage("Du hast das Spiel ausgewählt");
 
                     } else {
@@ -83,11 +83,11 @@ public class Highest implements CommandExecutor {
                             if (!config.contains("highest.votegame" + arg)) {
                                 config.set("highest.votegame" + arg, 0);
                             }
-                            CrashedPaper.getPlugin().saveConfig();
+                            CrashedMinigames.getPlugin().saveConfig();
                             int temp = config.getInt("highest.votegame" + arg);
                             temp++;
                             config.set("highest.votegame" + arg, temp);
-                            CrashedPaper.getPlugin().saveConfig();
+                            CrashedMinigames.getPlugin().saveConfig();
                             sender.sendMessage("Du hast für ein Spiel abgestimmt");
 
                         } else {
@@ -95,7 +95,7 @@ public class Highest implements CommandExecutor {
                                 String arg = args[1];
                                 if (arg.equalsIgnoreCase("true") || arg.equalsIgnoreCase("false")) {
                                     config.set("highest.gamevote", arg);
-                                    CrashedPaper.getPlugin().saveConfig();
+                                    CrashedMinigames.getPlugin().saveConfig();
                                     sender.sendMessage("Es wird über das Spiel abgestimmt: " + arg);
                                 } else {
                                     sender.sendMessage("/highest gamevote [true/false]");

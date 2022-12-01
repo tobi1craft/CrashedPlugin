@@ -1,6 +1,6 @@
 package de.tobi1craft.crashed.commands;
 
-import de.tobi1craft.crashed.CrashedWaterfall;
+import de.tobi1craft.crashed.CrashedBungee;
 import de.tobi1craft.crashed.listeners.restart.BeforeJoinPriorityListener;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 public class restart extends Command {
 
-    CrashedWaterfall plugin = CrashedWaterfall.getPlugin();
+    CrashedBungee plugin = CrashedBungee.getPlugin();
 
     public restart() {
         super("grestart", "crashed.restart", "stop", "end");

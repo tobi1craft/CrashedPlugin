@@ -1,6 +1,6 @@
-name: Crashed
+name: CrashedBungee
 version: '${project.version}'
-main: de.tobi1craft.crashed.CrashedWaterfall
+main: de.tobi1craft.crashed.CrashedBungee
 author: tobi1craft
 
 depend: [LuckPerms]

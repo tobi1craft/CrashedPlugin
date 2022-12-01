@@ -1,6 +1,6 @@
 package de.tobi1craft.crashed.listeners;
 
-import de.tobi1craft.crashed.CrashedWaterfall;
+import de.tobi1craft.crashed.CrashedBungee;
 import de.tobi1craft.crashed.commands.versions;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.event.PluginMessageEvent;
@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class ChannelListener implements Listener {
 
-    CrashedWaterfall plugin = CrashedWaterfall.getPlugin();
+    CrashedBungee plugin = CrashedBungee.getPlugin();
     versions versions = plugin.getVersions();
 
     public ChannelListener(Plugin plugin) {

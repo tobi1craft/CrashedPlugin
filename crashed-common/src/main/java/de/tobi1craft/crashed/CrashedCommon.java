@@ -144,12 +144,8 @@ public final class CrashedCommon extends JavaPlugin implements PluginMessageList
             }
             if (subChannel.equals("restart")) {
                 switch (stream.readUTF()) {
-                    case "restart":
-                        Bukkit.spigot().restart();
-                        break;
-                    case "pvp":
-                        PM.registerEvents(new DamageListener(), plugin);
-                        break;
+                    case "restart" -> Bukkit.spigot().restart();
+                    case "pvp" -> PM.registerEvents(new DamageListener(), plugin);
                 }
             }
             if (subChannel.equals("getversion")) {

@@ -1,6 +1,6 @@
 package de.tobi1craft.crashed.listeners;
 
-import de.tobi1craft.crashed.CrashedWaterfall;
+import de.tobi1craft.crashed.CrashedBungee;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -15,14 +15,12 @@ import net.md_5.bungee.event.EventHandler;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Objects;
 
 public class JoinListener implements Listener {
 
-    CrashedWaterfall plugin = CrashedWaterfall.getPlugin();
+    CrashedBungee plugin = CrashedBungee.getPlugin();
     File file = new File(plugin.getDataFolder().getPath(), "config.yml");
     Configuration config;
 

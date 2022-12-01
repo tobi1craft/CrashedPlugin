@@ -1,6 +1,6 @@
 package de.tobi1craft.crashed.util;
 
-import de.tobi1craft.crashed.CrashedWaterfall;
+import de.tobi1craft.crashed.CrashedBungee;
 import de.tobi1craft.crashed.mysql.MySQL;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.config.Configuration;
@@ -16,7 +16,7 @@ import java.time.ZoneId;
 import java.util.*;
 
 public class BanMySQL {
-    private final CrashedWaterfall plugin = CrashedWaterfall.getPlugin();
+    private final CrashedBungee plugin = CrashedBungee.getPlugin();
     private final MySQL mySQL = plugin.getMySQL();
     int daysInMonth;
     int monthh;

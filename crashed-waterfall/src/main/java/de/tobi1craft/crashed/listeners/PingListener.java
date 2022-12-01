@@ -1,6 +1,6 @@
 package de.tobi1craft.crashed.listeners;
 
-import de.tobi1craft.crashed.CrashedWaterfall;
+import de.tobi1craft.crashed.CrashedBungee;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.ServerPing;
@@ -19,7 +19,7 @@ import java.util.UUID;
 
 public class PingListener implements Listener {
 
-    CrashedWaterfall plugin = CrashedWaterfall.getPlugin();
+    CrashedBungee plugin = CrashedBungee.getPlugin();
 
     public PingListener(Plugin plugin) {
         ProxyServer.getInstance().getPluginManager().registerListener(plugin, this);

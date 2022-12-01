@@ -1,6 +1,6 @@
 package de.tobi1craft.crashed.games.onekitpvp;
 
-import de.tobi1craft.crashed.CrashedPaper;
+import de.tobi1craft.crashed.CrashedMinigames;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -10,7 +10,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class Start {
 
-    CrashedPaper plugin = CrashedPaper.getPlugin();
+    CrashedMinigames plugin = CrashedMinigames.getPlugin();
     FileConfiguration settings = plugin.getSettings();
     int i;
 

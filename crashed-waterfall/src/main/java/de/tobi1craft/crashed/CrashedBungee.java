@@ -27,21 +27,18 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.UUID;
 import java.util.logging.Level;
 
-public final class CrashedWaterfall extends Plugin {
+public final class CrashedBungee extends Plugin {
 
-    private static CrashedWaterfall plugin;
+    private static CrashedBungee plugin;
     private static Configuration config;
     private static File file;
-    private static File partiesFile;
-    private static File playersFile;
     private static versions versions;
     private static MySQL mySQL;
     private static BanMySQL ban;
 
-    public static CrashedWaterfall getPlugin() {
+    public static CrashedBungee getPlugin() {
         return plugin;
     }
 
@@ -129,6 +126,7 @@ public final class CrashedWaterfall extends Plugin {
         ProxyServer.getInstance().registerChannel("BungeeCord");
 
         getLogger().info("Crashed Plugin crashed successfully!");
+
     }
 
     @Override
@@ -145,8 +143,8 @@ public final class CrashedWaterfall extends Plugin {
             getDataFolder().mkdir();
         }
         file = new File(getDataFolder().getPath(), "config.yml");
-        partiesFile = new File(getDataFolder().getPath(), "parties.yml");
-        playersFile = new File(getDataFolder().getPath(), "players.yml");
+        File partiesFile = new File(getDataFolder().getPath(), "parties.yml");
+        File playersFile = new File(getDataFolder().getPath(), "players.yml");
         try {
             if (!file.exists()) {
                 file.createNewFile();

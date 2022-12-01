@@ -1,6 +1,6 @@
 package de.tobi1craft.crashed.game;
 
-import de.tobi1craft.crashed.CrashedPaper;
+import de.tobi1craft.crashed.CrashedMinigames;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -15,7 +15,7 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
 public class GameListeners implements Listener {
 
-    CrashedPaper plugin = CrashedPaper.getPlugin();
+    CrashedMinigames plugin = CrashedMinigames.getPlugin();
     FileConfiguration settings = plugin.getSettings();
 
     @EventHandler

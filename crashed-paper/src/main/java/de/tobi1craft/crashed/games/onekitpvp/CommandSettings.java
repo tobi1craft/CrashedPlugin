@@ -1,12 +1,11 @@
 package de.tobi1craft.crashed.games.onekitpvp;
 
-import de.tobi1craft.crashed.CrashedPaper;
+import de.tobi1craft.crashed.CrashedMinigames;
 import de.tobi1craft.crashed.util.ItemBuilder;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -23,7 +22,7 @@ import java.util.Objects;
 
 public class CommandSettings implements CommandExecutor, Listener {
 
-    static CrashedPaper plugin = CrashedPaper.getPlugin();
+    static CrashedMinigames plugin = CrashedMinigames.getPlugin();
     static FileConfiguration settings = plugin.getSettings();
     private Inventory okpinv;
 

@@ -1,6 +1,6 @@
 package de.tobi1craft.crashed.commands;
 
-import de.tobi1craft.crashed.CrashedWaterfall;
+import de.tobi1craft.crashed.CrashedBungee;
 import de.tobi1craft.crashed.mysql.MySQL;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 public class versions extends Command {
 
-    private final CrashedWaterfall plugin = CrashedWaterfall.getPlugin();
+    private final CrashedBungee plugin = CrashedBungee.getPlugin();
     private final MySQL mySQL = plugin.getMySQL();
     private String minigames = "Fehler";
     private String lobby = "Fehler";

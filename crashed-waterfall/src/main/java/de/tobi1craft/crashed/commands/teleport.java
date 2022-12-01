@@ -1,6 +1,6 @@
 package de.tobi1craft.crashed.commands;
 
-import de.tobi1craft.crashed.CrashedWaterfall;
+import de.tobi1craft.crashed.CrashedBungee;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class teleport extends Command implements TabExecutor {
-    private final CrashedWaterfall plugin = CrashedWaterfall.getPlugin();
+    private final CrashedBungee plugin = CrashedBungee.getPlugin();
 
     public teleport() {
         super("gtp", "crashed.teleport", "crashedtp", "ctp");

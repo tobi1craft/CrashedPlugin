@@ -18,16 +18,17 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-public final class CrashedPaper extends JavaPlugin {
+public final class CrashedMinigames extends JavaPlugin {
 
-    private static CrashedPaper plugin;
+    private static CrashedMinigames plugin;
     private static FileConfiguration config;
     private static File settingsFile;
     private static FileConfiguration settings;
     private static GameManager gameManager;
     private static Location spawnLocation;
+    private final CrashedCommon api = (CrashedCommon) Bukkit.getServer().getPluginManager().getPlugin("CrashedCommon");
 
-    public static CrashedPaper getPlugin() {
+    public static CrashedMinigames getPlugin() {
         return plugin;
     }
 
@@ -58,6 +59,7 @@ public final class CrashedPaper extends JavaPlugin {
         getLogger().info("Crashed Plugin crashed successfully!");
 
         new CommandSettings();
+
     }
 
     @Override
@@ -69,7 +71,7 @@ public final class CrashedPaper extends JavaPlugin {
             getDataFolder().mkdir();
         }
         config = plugin.getConfig();
-        settingsFile = new File(CrashedPaper.getPlugin().getDataFolder().getPath(), "onekitpvp.yml");
+        settingsFile = new File(CrashedMinigames.getPlugin().getDataFolder().getPath(), "onekitpvp.yml");
         if (!settingsFile.exists()) {
             try {
                 settingsFile.createNewFile();

@@ -1,6 +1,6 @@
 package de.tobi1craft.crashed.party;
 
-import de.tobi1craft.crashed.CrashedWaterfall;
+import de.tobi1craft.crashed.CrashedBungee;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
@@ -27,7 +27,7 @@ public class PartyCommand extends Command implements TabExecutor {
         super("party", "crashed.party", "p");
     }
 
-    CrashedWaterfall plugin = CrashedWaterfall.getPlugin();
+    CrashedBungee plugin = CrashedBungee.getPlugin();
     private static PartyCommand partyplugin;
 
     public static PartyCommand getPartyplugin() {

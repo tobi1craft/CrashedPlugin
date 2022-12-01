@@ -1,6 +1,6 @@
-name: Crashed
+name: CrashedMinigames
 version: '${project.version}'
-main: de.tobi1craft.crashed.CrashedPaper
+main: de.tobi1craft.crashed.CrashedMinigames
 api-version: 1.16
 authors: [ tobi1craft ]
 depend: [ PlaceholderAPI, Multiverse-Core, LuckPerms ]

@@ -1,6 +1,6 @@
 package de.tobi1craft.crashed.game;
 
-import de.tobi1craft.crashed.CrashedPaper;
+import de.tobi1craft.crashed.CrashedMinigames;
 import de.tobi1craft.crashed.games.onekitpvp.Start;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -11,7 +11,7 @@ import org.bukkit.plugin.PluginManager;
 
 public class GameManager {
 
-    CrashedPaper plugin = CrashedPaper.getPlugin();
+    CrashedMinigames plugin = CrashedMinigames.getPlugin();
     FileConfiguration config = plugin.getConfig();
     FileConfiguration settings = plugin.getSettings();
 

@@ -1,6 +1,6 @@
 package de.tobi1craft.crashed.listeners;
 
-import de.tobi1craft.crashed.CrashedWaterfall;
+import de.tobi1craft.crashed.CrashedBungee;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
@@ -18,7 +18,7 @@ import java.time.format.DateTimeFormatter;
 
 public class LeaveListener implements Listener {
 
-    CrashedWaterfall plugin = CrashedWaterfall.getPlugin();
+    CrashedBungee plugin = CrashedBungee.getPlugin();
 
     public LeaveListener(Plugin plugin) {
         ProxyServer.getInstance().getPluginManager().registerListener(plugin, this);

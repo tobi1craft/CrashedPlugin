@@ -1,6 +1,6 @@
 package de.tobi1craft.crashed.commands;
 
-import de.tobi1craft.crashed.CrashedWaterfall;
+import de.tobi1craft.crashed.CrashedBungee;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 public class motd extends Command implements TabExecutor {
 
-    CrashedWaterfall plugin = CrashedWaterfall.getPlugin();
+    CrashedBungee plugin = CrashedBungee.getPlugin();
 
     public motd() {
         super("motd", "crashed.motd", "messageoftheday");

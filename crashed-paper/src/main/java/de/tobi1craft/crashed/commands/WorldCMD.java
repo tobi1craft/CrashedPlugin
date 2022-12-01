@@ -1,6 +1,6 @@
 package de.tobi1craft.crashed.commands;
 
-import de.tobi1craft.crashed.CrashedPaper;
+import de.tobi1craft.crashed.CrashedMinigames;
 import de.tobi1craft.crashed.game.GameManager;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 public class WorldCMD implements CommandExecutor, TabExecutor {
 
-    CrashedPaper plugin = CrashedPaper.getPlugin();
+    CrashedMinigames plugin = CrashedMinigames.getPlugin();
     GameManager gameManager = plugin.getGameManager();
 
     @Override

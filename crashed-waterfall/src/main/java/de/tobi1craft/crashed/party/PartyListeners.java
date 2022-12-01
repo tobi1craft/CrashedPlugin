@@ -1,6 +1,6 @@
 package de.tobi1craft.crashed.party;
 
-import de.tobi1craft.crashed.CrashedWaterfall;
+import de.tobi1craft.crashed.CrashedBungee;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -19,7 +19,7 @@ import java.util.Objects;
 
 public class PartyListeners implements Listener {
 
-    CrashedWaterfall plugin = CrashedWaterfall.getPlugin();
+    CrashedBungee plugin = CrashedBungee.getPlugin();
 
     public PartyListeners(Plugin plugin) {
         ProxyServer.getInstance().getPluginManager().registerListener(plugin, this);

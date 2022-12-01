@@ -1,6 +1,6 @@
 package de.tobi1craft.crashed.commands.ban;
 
-import de.tobi1craft.crashed.CrashedWaterfall;
+import de.tobi1craft.crashed.CrashedBungee;
 import de.tobi1craft.crashed.util.BanMySQL;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
@@ -21,7 +21,7 @@ public class ban extends Command implements TabExecutor {
         super("ban", "crashed.ban", "crashedban", "cban", "gban");
     }
 
-    private final CrashedWaterfall plugin = CrashedWaterfall.getPlugin();
+    private final CrashedBungee plugin = CrashedBungee.getPlugin();
     private final BanMySQL ban = plugin.getBan();
 
     @Override

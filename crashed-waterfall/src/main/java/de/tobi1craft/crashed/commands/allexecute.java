@@ -1,11 +1,11 @@
 package de.tobi1craft.crashed.commands;
 
-import de.tobi1craft.crashed.CrashedWaterfall;
+import de.tobi1craft.crashed.CrashedBungee;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.plugin.Command;
 
 public class allexecute extends Command {
-    private final CrashedWaterfall plugin = CrashedWaterfall.getPlugin();
+    private final CrashedBungee plugin = CrashedBungee.getPlugin();
 
     public allexecute() {
         super("allexecute", "crashed.allexecute", "ae");
