@@ -55,8 +55,8 @@ public class ban extends Command implements TabExecutor {
             }
             if (args.length == 2) {
                 List<String> list = new ArrayList<>();
-                list.add("example");
-                list.add("otherExample");
+                list.add("reason");
+                list.add("otherReason");
                 /*
                 TODO: presets in und aus config
                 for (ProxiedPlayer players : ProxyServer.getInstance().getPlayers()) {
