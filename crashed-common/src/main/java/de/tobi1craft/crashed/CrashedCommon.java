@@ -36,6 +36,9 @@ public final class CrashedCommon extends JavaPlugin implements PluginMessageList
     private static MySQL mySQL;
     private static Nick nick;
     private static SetVersionMySQL versionMySQL;
+    public static CrashedCommon getPlugin() {
+        return plugin;
+    }
 
     @Override
     public void onEnable() {
@@ -87,10 +90,6 @@ public final class CrashedCommon extends JavaPlugin implements PluginMessageList
         Bukkit.getMessenger().unregisterIncomingPluginChannel(this, "BungeeCord", this);
         Bukkit.getMessenger().unregisterOutgoingPluginChannel(this, "BungeeCord");
         mySQL.disconnect();
-    }
-
-    public static CrashedCommon getPlugin() {
-        return plugin;
     }
 
     public MySQL getMySQL() {

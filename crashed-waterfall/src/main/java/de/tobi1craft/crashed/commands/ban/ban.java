@@ -17,27 +17,48 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class ban extends Command implements TabExecutor {
+    private final CrashedBungee plugin = CrashedBungee.getPlugin();
+    private final BanMySQL ban = plugin.getBan();
+
     public ban() {
         super("ban", "crashed.ban", "crashedban", "cban", "gban");
     }
 
-    private final CrashedBungee plugin = CrashedBungee.getPlugin();
-    private final BanMySQL ban = plugin.getBan();
-
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if (args.length == 0){
-            sender.sendMessage(new TextComponent(ChatColor.RED + "?"));
+        TextComponent info = new TextComponent(ChatColor.RED + "Error\n" + ChatColor.GREEN + "Wörter\n" + ChatColor.GREEN + "Wörter\n" + ChatColor.GREEN + "Wörter\n");
+        if (args.length == 0) {
+            sender.sendMessage(new TextComponent(info));
             return;
         }
         ProxiedPlayer toBan = ProxyServer.getInstance().getPlayer(args[0]);
-        if(toBan == null) {
+        if (toBan == null) {
             sender.sendMessage(new TextComponent(ChatColor.RED + "Spieler nicht gefunden"));
             return;
         }
-        UUID toBanUUID = toBan.getUniqueId();
+        String reason = "";
+        boolean forever = true;
+        String datetime = "";
+        switch (args.length) {
+            case 1:
+                break;
+            case 2:
+                reason = args[1];
+                break;
+            case 3:
+                reason = args[1];
+                forever = false;
+                datetime = args[2];
+                break;
+            default:
+                sender.sendMessage(info);
+                break;
+        }
 
-        ban.ban(toBanUUID, args[1], ban.translateNowToDatetime(args[2]));
+
+        UUID toBanUUID = toBan.getUniqueId();
+        if (forever) ban.ban(toBanUUID, reason);
+        else ban.ban(toBanUUID, reason, ban.translateNowToDatetime(datetime));
     }
 
     @Override

@@ -60,6 +60,7 @@ public final class CrashedMinigames extends JavaPlugin {
 
         new CommandSettings();
 
+        
     }
 
     @Override
